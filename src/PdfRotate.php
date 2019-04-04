@@ -19,21 +19,19 @@
 		 * @param  int
 		 * @return void
 		 */
-		public function rotatePdf($sourceFile, $outputFile, $degrees)
+		public function rotatePdf($sourceFile, $outputFile, $degrees, $size = '')
 		{
 			$pdf = new Fpdi\Fpdi;
 			$pageCount = $pdf->setSourceFile($sourceFile); //the original file
 
 			for ($i = 1; $i <= $pageCount; $i++) {
-				$pageformat = array('Rotate' => $degrees);
-
 				$tpage = $pdf->importPage($i);
 				$size = $pdf->getTemplateSize($tpage);
 
 				// get original page orientation
 				$orientation = $size['width'] > $size['height'] ? 'L' : 'P';
 
-				$pdf->AddPage($orientation, '', $degrees);
+				$pdf->AddPage($orientation, $size, $degrees);
 				$pdf->useTemplate($tpage);
 			}
 
