@@ -19,7 +19,7 @@
 		 * @param  int
 		 * @return void
 		 */
-		public function rotatePdf($sourceFile, $outputFile, $degrees, $size = '')
+		public function rotatePdf($sourceFile, $outputFile, $degrees)
 		{
 			$pdf = new Fpdi\Fpdi;
 			$pageCount = $pdf->setSourceFile($sourceFile); //the original file
